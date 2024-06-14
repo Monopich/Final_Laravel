@@ -1,5 +1,3 @@
-name: PHP Composer
-
 on:
   push:
     branches:
@@ -20,7 +18,7 @@ jobs:
       with:
         php-version: '8.2'
     - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
+      run: composer update --prefer-dist --no-progress
     - name: Copy .env
       run: cp .env.example .env
     - name: Create SQLite database
@@ -45,7 +43,7 @@ jobs:
         username: ${{ secrets.SMTP_USERNAME }}
         password: ${{ secrets.SMTP_PASSWORD }}
         subject: Build Failed
-        to: tongsreng@itc.edu.kh, ${{ github.event.head_commit.author.email }}
+        to: monopich1823@gmail.com, ${{ github.event.head_commit.author.email }}
         from: github-actions@yourdomain.com
         content_type: text/plain
         body: Build failed for commit ${{ github.sha }} by ${{ github.actor }}.
